@@ -1,10 +1,10 @@
 package org.gradle.sample.toolingapi;
 
-import org.gradle.tooling.GradleConnector;
-import org.gradle.tooling.ProjectConnection;
-import org.gradle.tooling.ModelBuilder;
 import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.sample.plugins.toolingapi.custom.CustomModel;
+import org.gradle.tooling.GradleConnector;
+import org.gradle.tooling.ModelBuilder;
+import org.gradle.tooling.ProjectConnection;
 
 import java.io.File;
 
@@ -20,6 +20,7 @@ public class ToolingApiRunner {
             customModelBuilder.withArguments("--init-script", "init.gradle"); 
             CustomModel model = customModelBuilder.get();        
             assert model.hasPlugin(JavaPlugin.class);
+            System.out.println(model.getJavaSrcDir(0));
         } finally {
             if(connection != null) {
                 connection.close();
